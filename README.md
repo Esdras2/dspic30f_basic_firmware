@@ -1,29 +1,50 @@
-# dsPIC30F4011 Firmware Examples
+# dsPIC30F4011 Basic Firmware Collection
 
-A curated collection of basic firmware demos for the Microchip dsPIC30F4011, built with the XC-DSC 3.21 toolchain and a 20 MHz system clock. Each folder contains code illustrating a different peripheral or core feature:
+Este repositorio contiene ejemplos prácticos y comentados de firmware para el microcontrolador Microchip dsPIC30F4011, usando el compilador XC-DSC 3.21 y un cristal de 20 MHz. Cada carpeta aborda un periférico o función esencial del microcontrolador, facilitando el aprendizaje y la reutilización en proyectos reales.
 
-- **0010_dspic30_led_test**  
-  Simple LED blink projects using Timer 1 and interrupts, demonstrated on both internal and external clock sources.
+## Estructura del Proyecto
 
-- **0020_dspic30f_pwm**  
-  Pulse-Width Modulation examples, including:  
-  1. Initial PWM module setup  
-  2. Driving multiple PWM channels at a fixed duty cycle  
-  3. Smoothly ramping duty cycle up and down
+- **0010_dspic30_led_test/**
+  - Ejemplos de parpadeo de LED usando Timer1 e interrupciones.
+  - Incluye variantes con oscilador interno (FRC) y cristal externo (HS).
+  - Ideal para aprender configuración básica de pines, temporizadores y manejo de interrupciones.
 
-- **0030_dspic30f_adc**  
-  Analog-to-Digital Converter examples, such as:  
-  1. Basic ADC initialization  
-  2. ADC conversions via interrupt  
-  3. Closed-loop control: adjusting PWM output based on ADC readings
+- **0020_dspic30f_pwm/**
+  - Demostraciones del módulo PWM:
+    - `10_initial_pwm_main.c`: Configuración mínima para generar PWM en un canal.
+    - `20_all_70_pwm_main.c`: Genera señal PWM al 70% en tres canales simultáneamente.
+    - `30_pwm_main.c`: Ejemplo de rampa de ciclo útil (duty cycle) que sube y baja automáticamente cada 2 segundos.
+  - Incluye [note.md](0020_dspic30f_pwm/note.md) con pasos detallados para configurar PWM correctamente en dsPIC30F4011.
 
-## Getting Started
+- **0030_dspic30f_adc/**
+  - Ejemplos de uso del convertidor analógico-digital (ADC):
+    - `11_initial_adc_config.c`: Inicialización básica del ADC y lectura continua mediante interrupción.
+    - `20_adc_pwm_main.c`: Controla el ciclo útil de un PWM en función de la lectura analógica (AN0), usando interrupciones.
+    - `21_adc_pwm_internal_osc.c`: Variante que usa el oscilador interno para el mismo control ADC→PWM.
+  - Incluye [note.md](0030_dspic30f_adc/note.md) con notas sobre prioridades de interrupción y control de PWM desde el ADC.
 
-1. Open the desired example folder.  
-2. Load the `.xcproj` into MPLAB X IDE.  
-3. Build with the XC-DSC 3.21 compiler.  
-4. Program your dsPIC30F4011 (20 MHz) and observe the behavior.
+## Cómo usar los ejemplos
+
+1. Abre la carpeta del ejemplo que te interese.
+2. Carga el archivo fuente `.c` en MPLAB X IDE (puedes crear un proyecto vacío y agregar el archivo).
+3. Configura el microcontrolador dsPIC30F4011 y selecciona el compilador XC-DSC 3.21.
+4. Compila y programa tu placa con un cristal de 20 MHz (o usa el oscilador interno según el ejemplo).
+5. Observa el comportamiento en hardware (LED, salidas PWM, respuesta a señales analógicas).
+
+## Agradecimientos
+
+Este proyecto fue desarrollado con el apoyo y la orientación de la Academia de Ingeniería Electrónica del TecNM Campus Mazatlán. Agradecemos a los profesores y estudiantes que han contribuido con su experiencia y dedicación al fortalecimiento de la formación práctica en sistemas embebidos.
+
+## Referencias
+
+- Documentación oficial de Microchip dsPIC30F4011.
+- Manuales y recursos de la Academia de Ingeniería Electrónica, TecNM Mazatlán.
+- Ejemplos y notas de laboratorio desarrollados en el marco de las asignaturas de sistemas digitales y microcontroladores.
+
+## Licencia
+
+Este proyecto está bajo licencia MIT. Consulta [LICENSE](LICENSE) para más detalles.
 
 ---
 
-Feel free to browse each demo to learn how to configure and use the dsPIC30F4011’s core peripherals!```
+Explora cada ejemplo y sus comentarios para aprender a configurar y aprovechar los periféricos clave del dsPIC30F4011 en tus propios desarrollos.
