@@ -7,11 +7,10 @@
 #pragma config FPWRT = PWRT_64        // Power-on Reset: 64 ms
 #pragma config MCLRE = MCLR_EN        // Pin MCLR activo
 
-#include <xc.h>
-#include <libpic30.h>
-
 // Frecuencia de ciclo de instrucción con FRC y PLL (opcional)
 #define FCY 7370000UL
+#include <xc.h>
+#include <libpic30.h>
 
 // Definición de pin LED
 #define LED_TRIS TRISDbits.TRISD0

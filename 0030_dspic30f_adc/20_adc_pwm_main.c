@@ -4,9 +4,6 @@
  *  Demo:  AN0 -> ADC -> actualiza PWM2H (pin RE3)
  *************************************************************/
 
-#include <xc.h>
-#include <libpic30.h>
-
 /* ——— CONFIG BITS (idénticos a los que vienes usando) ——— */
 /********************  CONFIGURATION BITS  ************************/
 #pragma config FPR     = HS                 // HS cristal 20 MHz
@@ -26,6 +23,9 @@
 /* ——————————————————— CONSTANTES DE DISEÑO —————————————————— */
 /* Reloj derivado */
 #define FCY             5000000UL          // Hz (usado por libpic30)
+
+#include <xc.h>
+#include <libpic30.h>
 
 /* PWM deseado */
 #define PWM_FREQ_HZ     5000UL             // 5 kHz

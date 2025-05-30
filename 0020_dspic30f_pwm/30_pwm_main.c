@@ -15,14 +15,14 @@
 #pragma config ICS     = ICS_PGD
 // -------------------------------------------------------------
 
-#include <xc.h>
-#include <libpic30.h>
-
 /* ======== Constantes ======== */
 #define FCY             5000000UL   // 20 MHz / 4
 #define PWM_FREQ_HZ     10000UL     // 10 kHz PWM
 #define RAMP_PERIOD_MS  2000UL      // ciclo 2 s
 #define STEP_MS         10UL        // resolución 10 ms
+#include <xc.h>
+#include <libpic30.h>
+
 
 /* === LED blink en RD1 === */
 #define BLINK_TRIS  TRISDbits.TRISD1

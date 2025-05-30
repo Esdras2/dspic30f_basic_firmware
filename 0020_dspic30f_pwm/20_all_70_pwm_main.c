@@ -15,12 +15,12 @@
 #pragma config ICS     = ICS_PGD
 /******************************************************************/
 
-#include <xc.h>
-#include <libpic30.h>
 
 /* =======  RELOJ Y CONSTANTES GENERALES  ======= */
 #define _XTAL_FREQ   20000000UL           // cristal 20 MHz
 #define FCY          (_XTAL_FREQ/4UL)     // 5 MHz
+#include <xc.h>
+#include <libpic30.h>
 
 /* =======  PWM 10 kHz – 70 %  ======= */
 #define PWM_HZ       10000UL              // 10 kHz
