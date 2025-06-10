@@ -1,10 +1,8 @@
 # Archivos de compilación y salidas de MPLAB X
 /dist/
 /build/
-/nbproject/Makefile-*
-/nbproject/private/
-/*.X.production/
-/*.X.debug/
+dist/
+build/
 *.o
 *.elf
 *.hex
@@ -21,15 +19,18 @@
 *.swp
 *.swo
 
-# Archivos de configuración local de MPLAB X
-nbproject/private/
-nbproject/Package-*.xml
-nbproject/configurations.xml
-nbproject/private/
-nbproject/private/*
-nbproject/Makefile-*
-nbproject/Makefile-*.mk
+# Archivos generados por MPLAB X
+*.X.production/
+*.X.debug/
 basic_firmware.X/.generated_files/
+
+# Archivos de configuración local y temporales de MPLAB X
+basic_firmware.X/nbproject/private/
+basic_firmware.X/nbproject/Makefile-*
+basic_firmware.X/nbproject/Makefile-*.mk
+basic_firmware.X/nbproject/Package-*.xml
+basic_firmware.X/nbproject/configurations.xml
+
 # Archivos temporales y de sistema
 .DS_Store
 Thumbs.db
