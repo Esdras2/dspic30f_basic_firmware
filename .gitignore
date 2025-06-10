@@ -1,0 +1,29 @@
+# Archivos de compilación
+/dist/
+/build/
+/nbproject/Makefile-*
+/nbproject/private/
+/*.X.production/
+/*.X.debug/
+
+# Archivos temporales y de usuario
+*.o
+*.elf
+*.hex
+*.map
+*.d
+*.p1
+*.p2
+*.sdb
+*.log
+*.dep
+*.out
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Archivos de configuración local de MPLAB X
+nbproject/private/
+.DS_Store
+Thumbs.db
