@@ -1,12 +1,10 @@
-# Archivos de compilación
+# Archivos de compilación y salidas de MPLAB X
 /dist/
 /build/
 /nbproject/Makefile-*
 /nbproject/private/
 /*.X.production/
 /*.X.debug/
-
-# Archivos temporales y de usuario
 *.o
 *.elf
 *.hex
@@ -25,5 +23,42 @@
 
 # Archivos de configuración local de MPLAB X
 nbproject/private/
+nbproject/Package-*.xml
+nbproject/configurations.xml
+nbproject/private/
+nbproject/private/*
+nbproject/Makefile-*
+nbproject/Makefile-*.mk
+basic_firmware.X/.generated_files/
+# Archivos temporales y de sistema
 .DS_Store
 Thumbs.db
+*.user
+*.orig
+*.old
+
+# Archivos de respaldo de editores
+*~
+*.autosave
+
+# Otros archivos generados
+*.lst
+*.dis
+*.pre
+*.gch
+*.obj
+*.exe
+*.bin
+*.mdb
+*.err
+*.ss
+*.tlog
+*.ipch
+*.pch
+*.idb
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
