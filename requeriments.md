@@ -19,7 +19,7 @@ This project was developed and tested with the following tools and versions. For
 - For USB or programmer/debugger support, install the latest Microchip drivers.
 
 ---
-```# Toolchain Requirements
+# Toolchain Requirements
 
 This project was developed and tested with the following tools and versions. For best compatibility and reproducibility, use these or newer versions:
 
