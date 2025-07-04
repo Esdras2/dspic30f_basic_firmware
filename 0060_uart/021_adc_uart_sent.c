@@ -1,17 +1,17 @@
 /***********************************************************************
  *  Proyecto:    Firmware de ejemplo UART + ADC + LED de vida
  *  Archivo:     main.c
- *  Dispositivo: dsPIC30F4011 @ 7.37?MHz FRC + PLL×8 (Fosc ? 58.96?MHz)
- *               FCY = Fosc / 4 ? 14.74?MHz
+ *  Dispositivo: dsPIC30F4011 @ 7.37MHz FRC + PLL×8 (Fosc  58.96MHz)
+ *               FCY = Fosc / 4  14.74MHz
  *  Autor:       Esdras Vázquez León
- *  Fecha:       25?Jun?2025
+ *  Fecha:       25Jun2025
  *
  *  Descripción:
  *    - Configura el oscilador interno (FRC) con PLL×8.
- *    - Inicializa UART2 a 115?200?bps (8?N?1).
- *    - Muestra el canal AN0 con el ADC y envía la lectura (10?bits)
+ *    - Inicializa UART2 a 115200bps (8N1).
+ *    - Muestra el canal AN0 con el ADC y envía la lectura (10bits)
  *      mediante una cabecera 0xAA 0x55 seguida de los bytes [H] [L].
- *    - Parpadea un LED de vida cada 50?ms (placeholder ? Timer1).
+ *    - Parpadea un LED de vida cada 50ms (placeholder  Timer1).
  *
  *  Licencia: MIT (plantilla, reemplace según convenga).
  ***********************************************************************/
@@ -20,25 +20,25 @@
 /*  CONFIGURATION BITS                                                  */
 /*======================================================================*/
 
-/*****************  CONFIGURATION BITS ? FRC + PLL×8  *******************/
+/*****************  CONFIGURATION BITS  FRC + PLL×8  *******************/
 /* 1) Oscilador primario:  FRC con PLL ×8                               */
 /* 2) Oscilador secundario/Failsafe: FRC (sin cristal externo)          */
 /* 3) Sin cambio dinámico de reloj ni monitor de reloj                  */
 #pragma config FPR     = FRC_PLL8        // Primary Oscillator Mode (FRC w/ PLL×8)
 #pragma config FOS     = PRI             // Oscillator Selection at Reset = Primary
-#pragma config FCKSMEN = CSW_FSCM_OFF    // Clock Switching OFF, Fail?Safe OFF
+#pragma config FCKSMEN = CSW_FSCM_OFF    // Clock Switching OFF, FailSafe OFF
 
 #pragma config PWMPIN  = RST_PWMPIN      // PWM pins como IO tras reset
 #pragma config LPOL    = PWMxL_ACT_HI
 #pragma config HPOL    = PWMxH_ACT_HI
 
 #pragma config WDT     = WDT_OFF         // Watchdog Timer OFF
-#pragma config FPWRT   = PWRT_64         // Power?up Timer 64?ms
-#pragma config BODENV  = BORV42          // Brown?out Voltage 4.2?V
-#pragma config BOREN   = PBOR_OFF        // Brown?out Reset OFF
+#pragma config FPWRT   = PWRT_64         // Powerup Timer 64ms
+#pragma config BODENV  = BORV42          // Brownout Voltage 4.2V
+#pragma config BOREN   = PBOR_OFF        // Brownout Reset OFF
 #pragma config MCLRE   = MCLR_EN         // MCLR pin enabled
-#pragma config GWRP    = GWRP_OFF        // Code Write?Protection OFF
-#pragma config GCP     = CODE_PROT_OFF   // Code Read?Protection OFF
+#pragma config GWRP    = GWRP_OFF        // Code WriteProtection OFF
+#pragma config GCP     = CODE_PROT_OFF   // Code ReadProtection OFF
 #pragma config ICS     = ICS_PGD         // ICD communication pins (PGC/PGD)
 
 #define _CRYSTAL_WORK   (7370000UL * 8UL)    // 7.37 MHz ×8
@@ -65,20 +65,20 @@
 #define LIFE_LED_LAT    LATDbits.LATD0
 
 /* ADC timing */
-#define ADCS_TAD_COUNTS 4      // (ADCS + 1) = 5 ? Tad ? 340?ns @ 14.74?MHz
-#define SAMPLING_TAD    10     // 10?Tad ? 3.4?µs tiempo de adquisición
+#define ADCS_TAD_COUNTS 4      // (ADCS + 1) = 5  Tad  340ns @ 14.74MHz
+#define SAMPLING_TAD    10     // 10Tad  3.4µs tiempo de adquisición
 
-/* UART2 pin mapping: RP21 ? U2TX, RP20 ? U2RX (ver datasheet PPS) */
+/* UART2 pin mapping: RP21  U2TX, RP20  U2RX (ver datasheet PPS) */
 #define U2TX_RP         21
 #define U2RX_RP         20
 
 /* Cálculo de BRG (modo BRGH=0, divisor 16) */
-#define BRGVAL          (7)   // ? 7 @ 14.74?MHz
+#define BRGVAL          (7)   //  7 @ 14.74MHz
 
 /*======================================================================*/
 /*  VARIABLES GLOBALES                                                  */
 /*======================================================================*/
-static volatile uint16_t g_adc_raw = 0;    // Última muestra ADC (0?1023)
+static volatile uint16_t g_adc_raw = 0;    // Última muestra ADC (01023)
 
 /*======================================================================*/
 /*  PROTOTIPOS                                                          */
@@ -101,7 +101,7 @@ static void uart2_init(void)
     TRISFbits.TRISF5 = 0;
 
     U2MODE = 0;                  // Módulo apagado para configurar
-    U2MODEbits.PDSEL = 0b00;     // 8?N?1
+    U2MODEbits.PDSEL = 0b00;     // 8N1
     U2MODEbits.STSEL = 0;
 
     U2BRG = (uint16_t)BRGVAL;    // Baud rate
@@ -135,8 +135,8 @@ static void uart_send_pkt(uint16_t val)
 /*************************  ADC ***************************************/
 static void adc_init(void)
 {
-    ADPCFG = 0xFFFF;            // Todos digitales ?
-    ADPCFGbits.PCFG0 = 0;       // ? excepto AN0 (analógico)
+    ADPCFG = 0xFFFF;            // Todos digitales 
+    ADPCFGbits.PCFG0 = 0;       //  excepto AN0 (analógico)
 
     /* Configura tiempos */
     ADCON3bits.ADCS = ADCS_TAD_COUNTS; // Tad
@@ -145,9 +145,9 @@ static void adc_init(void)
     ADCHS = ADC_CHANNEL;        // MUX canal
     ADCON2 = 0;                 // Conversión única, sin búfer alterno
 
-    ADCON1 = 0;                 // 10?bit, auto?convert
-    ADCON1bits.FORM = 0b00;     // Entero ? signo?pos
-    ADCON1bits.SSRC = 0b111;    // Gatillo interno (auto?conv)
+    ADCON1 = 0;                 // 10bit, autoconvert
+    ADCON1bits.FORM = 0b00;     // Entero  signopos
+    ADCON1bits.SSRC = 0b111;    // Gatillo interno (autoconv)
     ADCON1bits.ASAM = 0;        // Muestreo manual
 
     /* Interrupción ADC */
@@ -209,7 +209,7 @@ int main(void)
         uint16_t sample = g_adc_raw; // Lectura disponible (10 bits)
         uart_send_pkt(sample);       // Envía por UART
 
-        __delay_ms(100);             // Ritmo de salida ? 10 Hz
+        __delay_ms(100);             // Ritmo de salida  10 Hz
     }
 
     /* Nunca llega aquí */
